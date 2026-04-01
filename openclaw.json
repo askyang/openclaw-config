@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.28",
-    "lastTouchedAt": "2026-04-01T01:23:45.375Z"
+    "lastTouchedAt": "2026-04-01T02:35:52.743Z"
   },
   "wizard": {
     "lastRunAt": "2026-03-31T10:43:47.960Z",
@@ -83,22 +83,28 @@
         "mode": "safeguard"
       }
     },
-    "list": [   //官方配置，OpenClaw 实际使用的绑定规则 [必须]   
+    "list": [
       {
         "id": "main",
         "model": "deepseek/deepseek-chat"
       },
       {
-        "id": "workspace-zhuge",                                    //Agent唯一标识：主Agent 诸葛先生
-        "name": "workspace-zhuge",                                  // Agent显示名称  
-        "workspace": "/Users/itxueba/.openclaw/workspace-zhuge",    // 工作空间路径
-        "agentDir": "/Users/itxueba/.openclaw/agents/workspace-zhuge/agent"  // Agent运行时目录
+        "id": "workspace-zhuge",
+        "name": "workspace-zhuge",
+        "workspace": "/Users/itxueba/.openclaw/workspace-zhuge",
+        "agentDir": "/Users/itxueba/.openclaw/agents/workspace-zhuge/agent"
       },
       {
         "id": "weather-assistant",
         "name": "weather-assistant",
         "workspace": "/Users/itxueba/.openclaw/workspace-weather",
         "agentDir": "/Users/itxueba/.openclaw/agents/weather-assistant/agent"
+      },
+      {
+        "id": "dev-assistant",                                        // Agent唯一标识：开发助手
+        "name": "dev-assistant",                                      // Agent显示名称
+        "workspace": "/Users/itxueba/.openclaw/workspace-dev",        // 工作空间路径
+        "agentDir": "/Users/itxueba/.openclaw/agents/dev-assistant/agent"  // Agent运行时目录
       }
     ]
   },
@@ -165,6 +171,16 @@
           "id": "oc_cf380451c6f74d1584a778544225c1ff"
         }
       }
+    },
+    {
+      "agentId": "dev-assistant",           // 开发助手 Agent ID
+      "match": {
+        "channel": "feishu",                // 飞书渠道
+        "peer": {
+          "kind": "group",                  // 群聊类型
+          "id": "oc_3533030a28ad69ba7fa8e016af28a2be"  // 开发助手绑定群聊ID
+        }
+      }
     }
   ],
   "commands": {
@@ -184,10 +200,10 @@
       "connectionMode": "websocket",
       "domain": "feishu",
       "dmPolicy": "pairing",
-      "groupPolicy": "open",          // 群聊策略：open=开放接收，closed=关闭
-      "requireMention": false,        // 是否需要@提及：false=不需要，true=需要
+      "groupPolicy": "open",
+      "requireMention": false,
       "allowFrom": [
-        "*"                           // 允许消息来源：* = 所有用户
+        "*"
       ],
       "webhookPath": "/feishu/events",
       "reactionNotifications": "own",
