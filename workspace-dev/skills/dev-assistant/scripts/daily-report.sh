@@ -96,9 +96,29 @@ check_system_status() {
     echo "1. 磁盘使用情况："
     df -h / | tail -1 | awk '{print "  - 总空间: "$2", 已用: "$3", 可用: "$4", 使用率: "$5}'
     
-    # 内存使用情况
+    # 内存使用情况（macOS 兼容）
     echo "2. 内存使用情况："
-    free -h | grep Mem | awk '{print "  - 总内存: "$2", 已用: "$3", 可用: "$4", 使用率: "$3"/"$2}'
+    if command -v vm_stat &> /dev/null; then
+        # macOS 使用 vm_stat
+        local pagesize=$(pagesize)
+        local free_pages=$(vm_stat | grep "Pages free" | awk '{print $3}' | tr -d '.')
+        local active_pages=$(vm_stat | grep "Pages active" | awk '{print $3}' | tr -d '.')
+        local inactive_pages=$(vm_stat | grep "Pages inactive" | awk '{print $3}' | tr -d '.')
+        local speculative_pages=$(vm_stat | grep "Pages speculative" | awk '{print $3}' | tr -d '.')
+        local wired_pages=$(vm_stat | grep "Pages wired down" | awk '{print $4}' | tr -d '.')
+        
+        local total_mb=$(( (free_pages + active_pages + inactive_pages + speculative_pages + wired_pages) * pagesize / 1024 / 1024 ))
+        local used_mb=$(( (active_pages + wired_pages) * pagesize / 1024 / 1024 ))
+        local free_mb=$(( free_pages * pagesize / 1024 / 1024 ))
+        local usage_percent=$(( used_mb * 100 / total_mb ))
+        
+        echo "  - 总内存: ${total_mb}MB, 已用: ${used_mb}MB, 可用: ${free_mb}MB, 使用率: ${usage_percent}%"
+    elif command -v free &> /dev/null; then
+        # Linux 使用 free
+        free -h | grep Mem | awk '{print "  - 总内存: "$2", 已用: "$3", 可用: "$4", 使用率: "$3"/"$2}'
+    else
+        echo "  - ⚠️  无法获取内存信息"
+    fi
     
     # OpenClaw 服务状态
     echo "3. OpenClaw 服务状态："
@@ -119,34 +139,28 @@ generate_report() {
 ## 📊 项目状态概览
 
 ### 1. ~/.openclaw 项目状态
-$(cd "$OPENCLAW_DIR" && {
+$(
+    cd "$OPENCLAW_DIR"
     if [ -d ".git" ]; then
-        branch=\$(git branch --show-current 2>/dev/null || echo "未知分支")
-        changes=\$(git status --short | wc -l)
-        if [ \$changes -gt 0 ]; then
-            echo "- 📝 分支: \$branch - 有 \$changes 个未提交变更"
+        branch=$(git branch --show-current 2>/dev/null || echo "未知分支")
+        changes=$(git status --short | wc -l)
+        if [ $changes -gt 0 ]; then
+            echo "- 📝 分支: $branch - 有 $changes 个未提交变更"
         else
-            echo "- ✅ 分支: \$branch - 代码已提交"
+            echo "- ✅ 分支: $branch - 代码已提交"
         fi
     else
         echo "- ⚠️ 不是 Git 仓库"
     fi
-})
+)
 
 ### 2. ~/.openclaw/workspace-dev 项目状态
-$(cd "$WORKSPACE_DIR" && {
-    if [ -d ".git" ]; then
-        branch=\$(git branch --show-current 2>/dev/null || echo "未知分支")
-        changes=\$(git status --short | wc -l)
-        if [ \$changes -gt 0 ]; then
-            echo "- 📝 分支: \$branch - 有 \$changes 个未提交变更"
-        else
-            echo "- ✅ 分支: \$branch - 代码已提交"
-        fi
-    else
-        echo "- ⚠️ 不是 Git 仓库"
-    fi
-})
+$(
+    cd "$WORKSPACE_DIR"
+    echo "- 📁 作为主仓库子目录管理"
+    echo "- 🔄 变更由主仓库统一跟踪"
+    echo "- ✅ 包含完整技能包：$(find skills/dev-assistant -type f -name "*.md" -o -name "*.sh" -o -name "*.json" | wc -l) 个文件"
+)
 
 ## ✅ 昨日完成工作
 $(if [ -f "$LOG_DIR/yesterday-tasks.md" ]; then
