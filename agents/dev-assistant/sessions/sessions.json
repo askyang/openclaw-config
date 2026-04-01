@@ -1,7 +1,7 @@
 {
   "agent:dev-assistant:feishu:group:oc_3533030a28ad69ba7fa8e016af28a2be": {
     "sessionId": "9be5e7fc-9df2-4462-8ce3-dc1869b04c3b",
-    "updatedAt": 1775015562382,
+    "updatedAt": 1775018526242,
     "systemSent": true,
     "abortedLastRun": false,
     "authProfileOverride": "deepseek:default",
@@ -262,13 +262,13 @@
       "version": 0
     },
     "status": "running",
-    "startedAt": 1775015562348,
+    "startedAt": 1775018526196,
     "modelProvider": "deepseek",
     "model": "deepseek-chat",
     "contextTokens": 131072,
     "systemPromptReport": {
       "source": "run",
-      "generatedAt": 1775015320929,
+      "generatedAt": 1775018497904,
       "sessionId": "9be5e7fc-9df2-4462-8ce3-dc1869b04c3b",
       "sessionKey": "agent:dev-assistant:feishu:group:oc_3533030a28ad69ba7fa8e016af28a2be",
       "provider": "deepseek",
@@ -720,12 +720,12 @@
         ]
       }
     },
-    "inputTokens": 610,
-    "outputTokens": 645,
-    "cacheRead": 65216,
+    "inputTokens": 904,
+    "outputTokens": 948,
+    "cacheRead": 104512,
     "cacheWrite": 0,
-    "estimatedCostUsd": 0.163356004,
-    "totalTokens": 65826,
+    "estimatedCostUsd": 0.31515624000000003,
+    "totalTokens": 105416,
     "totalTokensFresh": true
   }
 }
