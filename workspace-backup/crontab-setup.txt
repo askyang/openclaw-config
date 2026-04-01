@@ -1,0 +1,21 @@
+# 北京天气助手定时任务
+# 每天早上8:00执行
+
+# 使用以下命令添加定时任务：
+# crontab -e
+
+# 然后添加这一行：
+0 8 * * * /Users/itxueba/.openclaw/workspace/weather-assistant.sh
+
+# 解释：
+# 0 8 * * * = 每天8:00
+# /Users/itxueba/.openclaw/workspace/weather-assistant.sh = 要执行的脚本
+
+# 其他时间示例：
+# 0 9 * * *      每天9:00
+# 0 8,12,18 * * * 每天8:00,12:00,18:00
+# 0 8 * * 1-5    工作日每天8:00
+# 0 8 * * 6,7    周末每天8:00
+
+# 测试命令（每分钟执行一次）：
+# * * * * * /Users/itxueba/.openclaw/workspace/weather-assistant.sh >> /tmp/weather-test.log 2>&1

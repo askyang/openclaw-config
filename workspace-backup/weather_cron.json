@@ -1,0 +1,13 @@
+{
+  "name": "weather-assistant-daily",
+  "description": "每天8点发送北京天气到飞书群聊",
+  "schedule": "0 8 * * *",
+  "timezone": "Asia/Shanghai",
+  "command": "bash /Users/itxueba/.openclaw/workspace/weather_assistant.sh",
+  "channel": "feishu",
+  "target": {
+    "type": "chat",
+    "id": "oc_cf380451c6f74d1584a778544225c1ff"
+  },
+  "enabled": true
+}

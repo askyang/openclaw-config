@@ -1,0 +1,46 @@
+{
+  "workspace_bindings": { //自定义的辅助配置文件.记录：哪个群聊绑定到哪个工作空间。对应的 Agent 名称和描述.创建时间和创建者
+    "chat_mappings": {
+      "oc_8d0f424e1590f3522dd66fbaef052fb5": {//群聊id
+        "workspace_path": "/Users/itxueba/.openclaw/workspace-zhuge", //对应工作空间
+        "agent_name": "诸葛先生", //Agent名字
+        "description": "诸葛先生的工作空间 - HR总监+技术架构师+大军师", //描述
+        "created_at": "2026-03-31T21:10:00+08:00", //创建时间
+        "created_by": "老周" //创建者
+      },
+      "oc_cf380451c6f74d1584a778544225c1ff": {//群聊id - 天气助手绑定群
+        "workspace_path": "/Users/itxueba/.openclaw/workspace-weather", //对应工作空间
+        "agent_name": "天气助手", //Agent名字
+        "description": "天气助手系统 - 每天8点发送北京天气，准时播报北京天气情况", //描述
+        "created_at": "2026-04-01T09:25:00+08:00", //创建时间
+        "created_by": "诸葛先生", //创建者
+        "features": [ //功能特性
+          "每天8点定时播报",
+          "北京天气信息",
+          "温度、湿度、风力、空气质量",
+          "生活建议（穿衣、出行）"
+        ]
+      },
+      "oc_3533030a28ad69ba7fa8e016af28a2be": {//群聊id - 开发助手绑定群
+        "workspace_path": "/Users/itxueba/.openclaw/workspace-dev", //对应工作空间
+        "agent_name": "开发助手", //Agent名字
+        "description": "开发助手系统 - 全栈开发专家+项目管家，每天8点发送工作日报", //描述
+        "created_at": "2026-04-01T10:35:00+08:00", //创建时间
+        "created_by": "诸葛先生", //创建者
+        "features": [ //功能特性
+          "项目管理与git维护",
+          "技术文档撰写",
+          "技术方案实现",
+          "项目研究与服务器运维",
+          "每天8点工作日报汇总"
+        ],
+        "access_directories": [ //访问目录
+          "~/.openclaw",
+          "~/workspace-pro"
+        ],
+        "github_account": "zhengyang-zhou@163.com" //GitHub账号
+      }
+    },
+    "default_workspace": "/Users/itxueba/.openclaw/workspace-zhuge" //默认工作空间
+  }
+}
