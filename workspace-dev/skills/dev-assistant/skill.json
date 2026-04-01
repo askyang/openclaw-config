@@ -4,7 +4,13 @@
   "description": "开发助手技能包 - 全栈开发专家 + 项目管家",
   "author": "小开 (开发助手)",
   "created": "2026-04-01",
-  "tags": ["development", "git", "project-management", "automation", "feishu"],
+  "tags": [
+    "development",
+    "git",
+    "project-management",
+    "automation",
+    "feishu"
+  ],
   "dependencies": [],
   "entryPoints": {
     "main": "SKILL.md",
@@ -27,7 +33,10 @@
         "部署",
         "运维",
         "技术方案",
-        "架构设计"
+        "架构设计",
+        "技能更新",
+        "自我学习",
+        "能力维护"
       ]
     },
     {
@@ -62,6 +71,10 @@
     {
       "input": "帮我设计一个技术方案",
       "output": "请告诉我项目需求，我将为您设计完整的技术方案..."
+    },
+    {
+      "input": "更新你的技能",
+      "output": "正在分析最近的交流记录，更新和完善技能..."
     }
   ]
 }
