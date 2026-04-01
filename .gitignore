@@ -21,8 +21,6 @@ subagents/
 workspace
 workspace-*/
 workspace-backup/
-agents/
-extensions/
 identity/
 memory/
 *.bak.*
