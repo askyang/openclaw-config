@@ -1,7 +1,7 @@
 {
   "agent:dev-assistant:feishu:group:oc_3533030a28ad69ba7fa8e016af28a2be": {
     "sessionId": "9be5e7fc-9df2-4462-8ce3-dc1869b04c3b",
-    "updatedAt": 1775014777715,
+    "updatedAt": 1775014941408,
     "systemSent": true,
     "abortedLastRun": false,
     "authProfileOverride": "deepseek:default",
@@ -261,8 +261,8 @@
       ],
       "version": 0
     },
-    "status": "done",
-    "startedAt": 1775014751245,
+    "status": "running",
+    "startedAt": 1775014941380,
     "modelProvider": "deepseek",
     "model": "deepseek-chat",
     "contextTokens": 131072,
@@ -726,8 +726,6 @@
     "cacheWrite": 0,
     "estimatedCostUsd": 0.12102837600000001,
     "totalTokens": 48777,
-    "totalTokensFresh": true,
-    "endedAt": 1775014777673,
-    "runtimeMs": 26428
+    "totalTokensFresh": true
   }
 }
