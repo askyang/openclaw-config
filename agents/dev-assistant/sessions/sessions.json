@@ -1,7 +1,7 @@
 {
   "agent:dev-assistant:feishu:group:oc_3533030a28ad69ba7fa8e016af28a2be": {
     "sessionId": "9be5e7fc-9df2-4462-8ce3-dc1869b04c3b",
-    "updatedAt": 1775014626132,
+    "updatedAt": 1775014777715,
     "systemSent": true,
     "abortedLastRun": false,
     "authProfileOverride": "deepseek:default",
@@ -261,14 +261,14 @@
       ],
       "version": 0
     },
-    "status": "running",
-    "startedAt": 1775014626105,
+    "status": "done",
+    "startedAt": 1775014751245,
     "modelProvider": "deepseek",
     "model": "deepseek-chat",
     "contextTokens": 131072,
     "systemPromptReport": {
       "source": "run",
-      "generatedAt": 1775014273405,
+      "generatedAt": 1775014751076,
       "sessionId": "9be5e7fc-9df2-4462-8ce3-dc1869b04c3b",
       "sessionKey": "agent:dev-assistant:feishu:group:oc_3533030a28ad69ba7fa8e016af28a2be",
       "provider": "deepseek",
@@ -288,9 +288,9 @@
         "sandboxed": false
       },
       "systemPrompt": {
-        "chars": 36533,
+        "chars": 36519,
         "projectContextChars": 13495,
-        "nonProjectContextChars": 23038
+        "nonProjectContextChars": 23024
       },
       "injectedWorkspaceFiles": [
         {
@@ -720,12 +720,14 @@
         ]
       }
     },
-    "inputTokens": 493,
-    "outputTokens": 823,
-    "cacheRead": 39680,
+    "inputTokens": 37001,
+    "outputTokens": 664,
+    "cacheRead": 11776,
     "cacheWrite": 0,
-    "estimatedCostUsd": 0.089975704,
-    "totalTokens": 40173,
-    "totalTokensFresh": true
+    "estimatedCostUsd": 0.12102837600000001,
+    "totalTokens": 48777,
+    "totalTokensFresh": true,
+    "endedAt": 1775014777673,
+    "runtimeMs": 26428
   }
 }

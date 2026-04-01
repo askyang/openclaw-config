@@ -1,0 +1,67 @@
+{
+  "name": "dev-assistant",
+  "version": "1.0.0",
+  "description": "开发助手技能包 - 全栈开发专家 + 项目管家",
+  "author": "小开 (开发助手)",
+  "created": "2026-04-01",
+  "tags": ["development", "git", "project-management", "automation", "feishu"],
+  "dependencies": [],
+  "entryPoints": {
+    "main": "SKILL.md",
+    "references": [
+      "references/GIT_BEST_PRACTICES.md",
+      "references/PROJECT_MANAGEMENT.md"
+    ],
+    "scripts": [
+      "scripts/daily-report.sh"
+    ]
+  },
+  "triggers": [
+    {
+      "type": "keyword",
+      "patterns": [
+        "开发",
+        "代码",
+        "git",
+        "项目",
+        "部署",
+        "运维",
+        "技术方案",
+        "架构设计"
+      ]
+    },
+    {
+      "type": "command",
+      "patterns": [
+        "/daily-report",
+        "/git-status",
+        "/project-status"
+      ]
+    }
+  ],
+  "capabilities": {
+    "fileSystem": true,
+    "git": true,
+    "shell": true,
+    "feishu": true,
+    "webSearch": true
+  },
+  "examples": [
+    {
+      "input": "帮我创建一个新的项目",
+      "output": "我将帮您分析需求、设计技术方案、搭建项目框架..."
+    },
+    {
+      "input": "检查Git状态",
+      "output": "正在检查所有项目的Git状态..."
+    },
+    {
+      "input": "生成工作日报",
+      "output": "正在生成今日工作日报..."
+    },
+    {
+      "input": "帮我设计一个技术方案",
+      "output": "请告诉我项目需求，我将为您设计完整的技术方案..."
+    }
+  ]
+}
