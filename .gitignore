@@ -26,6 +26,11 @@ memory/
 *.bak.*
 openclaw.json.bak*
 
+# Session files
+agents/*/sessions/*.jsonl
+agents/*/sessions/*.jsonl.lock
+agents/*/sessions/sessions.json
+
 # Node.js
 node_modules/
 npm-debug.log*
