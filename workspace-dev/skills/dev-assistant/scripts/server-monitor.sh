@@ -407,4 +407,5 @@ $(sqlite3 "$DB_FILE" "SELECT config_key, config_value, description FROM monitori
 **专业监控，智能告警，及时响应！** 🖥️🚨📊
 EOF
     
-    echo
+    echo "✅ 监控报告已生成: $REPORT_FILE"
+}

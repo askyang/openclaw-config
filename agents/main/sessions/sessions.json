@@ -1,7 +1,7 @@
 {
   "agent:main:main": {
     "sessionId": "9360b9da-24c9-40f3-8a4f-d609aa40be6f",
-    "updatedAt": 1775018376697,
+    "updatedAt": 1775022351967,
     "systemSent": true,
     "abortedLastRun": false,
     "authProfileOverride": "deepseek:default",
@@ -251,13 +251,13 @@
       "version": 0
     },
     "status": "done",
-    "startedAt": 1775018371644,
+    "startedAt": 1775022346818,
     "modelProvider": "deepseek",
     "model": "deepseek-chat",
     "contextTokens": 131072,
     "systemPromptReport": {
       "source": "run",
-      "generatedAt": 1775018371579,
+      "generatedAt": 1775022346787,
       "sessionId": "9360b9da-24c9-40f3-8a4f-d609aa40be6f",
       "sessionKey": "agent:main:main",
       "provider": "deepseek",
@@ -713,11 +713,11 @@
     "outputTokens": 65,
     "cacheRead": 30080,
     "cacheWrite": 0,
-    "estimatedCostUsd": 0.029818208,
+    "estimatedCostUsd": 0.033321623999999994,
     "totalTokens": 30183,
     "totalTokensFresh": true,
-    "endedAt": 1775018376650,
-    "runtimeMs": 5006
+    "endedAt": 1775022351884,
+    "runtimeMs": 5066
   },
   "agent:main:feishu:direct:ou_45ce644a62465d6cb95519c7a1c8bd58": {
     "sessionId": "2c1e426f-3b2b-4d54-b6e5-d35855a4b61b",
