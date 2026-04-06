@@ -67,83 +67,6 @@ get_git_status() {
     fi
 }
 
-# 函数：检查研发服务器状态
-check_research_servers() {
-    echo "### AIReady研发服务器集群状态"
-    echo ""
-    echo "#### 📊 实时状态（最后检查: $(date +%H:%M)）"
-    echo ""
-    
-    # 从数据库获取研发服务器状态
-    local db_path="$HOME/.openclaw/workspace-dev/data/servers.db"
-    if [ -f "$db_path" ]; then
-        local server_status=$(sqlite3 "$db_path" 2>/dev/null << EOF
-SELECT 
-    s.server_name,
-    CASE WHEN sm.check_result = "success" THEN "✅ 正常" ELSE "❌ 异常" END as status,
-    sm.response_time_ms,
-    sm.check_time
-FROM server_monitoring sm
-JOIN servers s ON sm.server_id = s.id
-WHERE s.ip_address LIKE "%172.32.8.%"
-  AND sm.check_time = (
-    SELECT MAX(check_time)
-    FROM server_monitoring
-    WHERE server_id = sm.server_id
-  )
-ORDER BY s.ip_address;
-EOF
-        )
-        
-        if [ -n "$server_status" ]; then
-            echo "| 服务器名称 | 状态 | 响应时间 | 最后检查 |"
-            echo "|------------|------|----------|----------|"
-            echo "$server_status" | while IFS='|' read -r name status response check_time; do
-                # 简化时间显示
-                check_time_short=$(echo "$check_time" | cut -d" " -f2 | cut -d: -f1-2)
-                echo "| $name | $status | ${response}ms | $check_time_short |"
-            done
-            echo ""
-            
-            # 计算成功率
-            local total=$(echo "$server_status" | wc -l)
-            local normal=$(echo "$server_status" | grep "✅ 正常" | wc -l)
-            local success_rate=$((normal * 100 / total))
-            echo "**成功率: ${success_rate}% (${normal}/${total}台正常)**"
-            echo ""
-            
-            # 检查是否有异常
-            local abnormal=$(echo "$server_status" | grep "❌ 异常")
-            if [ -n "$abnormal" ]; then
-                echo "#### 🚨 异常服务器提醒"
-                echo "$abnormal" | while IFS='|' read -r name status response check_time; do
-                    check_time_short=$(echo "$check_time" | cut -d" " -f2 | cut -d: -f1-2)
-                    echo "- **$name**: 连接异常 (最后检查: $check_time_short)"
-                done
-                echo ""
-                echo "**建议**: 立即检查异常服务器的网络连接和SSH服务"
-                echo ""
-            else
-                echo "#### ✅ 所有研发服务器运行正常"
-                echo ""
-            fi
-        else
-            echo "暂无研发服务器监控数据"
-            echo ""
-        fi
-    else
-        echo "数据库文件不存在"
-        echo ""
-    fi
-    
-    echo "#### ⏰ 监控系统状态"
-    echo "- **检查频率**: 每5分钟自动检查"
-    echo "- **异常告警**: 自动生成并通知"
-    echo "- **数据记录**: 所有检查结果保存到数据库"
-    echo "- **每日报告**: 8:00自动发送状态汇总"
-    echo ""
-}
-
 # 函数：检查项目状态
 check_project_status() {
     echo -e "${BLUE}🔍 项目状态检查...${NC}"
@@ -284,8 +207,6 @@ else
     echo "- 暂无需要支持的事项"
 fi)
 
-## 🔍 研发服务器状态
-$(check_research_servers)
 ## 🖥️ 系统状态
 - **服务器**：周正杨的Mac mini
 - **系统**：macOS $(sw_vers -productVersion)
